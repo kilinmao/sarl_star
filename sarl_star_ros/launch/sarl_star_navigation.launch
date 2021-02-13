@@ -87,6 +87,8 @@
         <rosparam file="$(find conventional)/config/global_costmap_params.yaml" command="load" />
     </node>
 
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find robot_description)/robots/robot.urdf.xacro" />
+
   <!-- SARL_star Planner -->
   <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
 
