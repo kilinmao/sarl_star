@@ -281,7 +281,7 @@ Visualization Manager:
     - Arrow Length: 0.300000012
       Axes Length: 1
       Axes Radius: 0.100000001
-      Class: jsk_rviz_plugin/PoseArray
+      Class: rviz/PoseArray
       Color: 255; 25; 0
       Enabled: false
       Name: PoseArray
