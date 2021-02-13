@@ -42,8 +42,8 @@
   </group>
 
   <!--  ************** rviz  ***************  -->
-  <!-- <group if="$(arg use_rviz)">
+  <group if="$(arg use_rviz)">
     <node name="flatland_rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find sarl_star_ros)/rviz/nav_LP.rviz"/>
-  </group>     -->
+  </group>    
 
 </launch>
