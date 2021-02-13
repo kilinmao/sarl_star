@@ -331,8 +331,6 @@ Visualization Manager:
     - Class: rviz/SetGoal
       Topic: /move_base_simple/goal
     - Class: flatland_viz/SpawnModel
-    - Class: rviz_plugins/Goal3DTool
-      Topic: goal
   Value: true
   Views:
     Current:
