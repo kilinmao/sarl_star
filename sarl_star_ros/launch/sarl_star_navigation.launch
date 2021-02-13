@@ -68,7 +68,7 @@
     <arg name="viz_pub_rate"    default="30.0"/>
     <arg name="use_rviz"        default="$(arg use_viz)"/>  
     <!-- <arg name="train_mode"      value="$(arg train_mode)"/> -->
-    <arg name="rviz_file"       value="$(arg rviz_file)"/>
+    <!-- <arg name="rviz_file"       value="$(arg rviz_file)"/> -->
   </include>
 
   <!-- People Detector -->
