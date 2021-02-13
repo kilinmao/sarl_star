@@ -568,8 +568,6 @@ class CrowdSim(gym.Env):
             global_step[0] = 0
 
             def update(frame_num):
-                # nonlocal global_step
-                # nonlocal arrows
                 global_step[0] = frame_num
                 robot.center = robot_positions[frame_num]
                 for i, human in enumerate(humans):
