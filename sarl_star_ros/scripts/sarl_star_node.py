@@ -105,6 +105,13 @@ class RobotAction(object):
         self.start_px = None
         self.start_py = None
 
+        # ROS publishers
+        self.cmd_vel_pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
+        self.goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1)
+        self.action_marker_pub = rospy.Publisher('/action_marker', Marker, queue_size=1)
+        self.trajectory_marker_pub = rospy.Publisher('/trajectory_marker', Marker, queue_size=1)
+        self.vehicle_marker_pub = rospy.Publisher('/vehicle_marker', Marker, queue_size=1)
+
         # ROS subscribers
         self.robot_pose_sub = rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, self.update_robot_pos)
         self.robot_odom_sub = rospy.Subscriber('/odom', Odometry, self.robot_vel_on_map_calculator)
@@ -112,12 +119,7 @@ class RobotAction(object):
         self.goal_sub = rospy.Subscriber('/local_goal', PoseStamped, self.get_goal_on_map)
         self.global_costmap_sub = rospy.Subscriber('/move_base/global_costmap/costmap', OccupancyGrid, self.get_gc)
         
-        # ROS publishers
-        self.cmd_vel_pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
-        self.goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1)
-        self.action_marker_pub = rospy.Publisher('/action_marker', Marker, queue_size=1)
-        self.trajectory_marker_pub = rospy.Publisher('/trajectory_marker', Marker, queue_size=1)
-        self.vehicle_marker_pub = rospy.Publisher('/vehicle_marker', Marker, queue_size=1)
+
 
     def update_robot_pos(self, msg):
         self.IsAMCLReceived = True
@@ -330,7 +332,8 @@ if __name__ == '__main__':
 
     try:
         rospy.init_node('sarl_star_node', anonymous=True)
-        rate = rospy.Rate(4)  # 4Hz, time_step=0.25
+#        rate = rospy.Rate(4)  # 4Hz, time_step=0.25
+        rate = rospy.Rate(20)  # 4Hz, time_step=0.25
         robot_act = RobotAction()
         listener_v = tf.TransformListener()
         listener_g = tf.TransformListener()
