@@ -63,7 +63,8 @@ class CrowdSim(gym.Env):
 
     def configure(self, config):
         self.config = config
-        self.time_limit = config.getint('env', 'time_limit')
+#        self.time_limit = config.getint('env', 'time_limit')
+        self.time_limit = 25
         self.time_step = config.getfloat('env', 'time_step')
         self.randomize_attributes = config.getboolean('env', 'randomize_attributes')
         self.success_reward = config.getfloat('reward', 'success_reward')
