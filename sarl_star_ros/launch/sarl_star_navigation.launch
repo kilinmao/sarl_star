@@ -1,10 +1,12 @@
 <launch>
 <!--  -->
   <!-- Define laser type-->
-  <!-- <arg name="laser_type" default="hokuyo" /> -->
+  <arg name="laser_type" default="hokuyo" />
+
+  <rosparam name = "use_sim_time"  value = "true"/>
 
   <!-- laser driver -->
-  <!-- <include file="$(find turtlebot_navigation)/laser/driver/$(arg laser_type)_laser.launch" /> -->
+  <include file="$(find turtlebot_navigation)/laser/driver/$(arg laser_type)_laser.launch" />
 
   <!-- laser filter (optional) -->
   <!-- <node pkg="laser_filters" type="scan_to_scan_filter_chain"
@@ -75,17 +77,18 @@
   <include file="$(find people_velocity_tracker)/launch/tracked_detector.launch" />
 
   <!-- Move base -->
-  <!-- <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/$(arg laser_type)_costmap_params.yaml"/>
+  <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/$(arg laser_type)_costmap_params.yaml"/>
   <include file="$(find turtlebot_navigation)/launch/includes/$(arg laser_type)_move_base.launch.xml">
     <arg name="custom_param_file" value="$(arg custom_param_file)"/>
-  </include> -->
-    <arg name="model" default="burger"/>
+  </include>
+
+    <!-- <arg name="model" default="burger"/>
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
         <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />   
         <rosparam file="$(find conventional)/config/local_costmap_params.yaml" command="load" />
         <rosparam file="$(find conventional)/config/global_costmap_params.yaml" command="load" />
-    </node>
+    </node> -->
 
   <!-- SARL_star Planner -->
   <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
