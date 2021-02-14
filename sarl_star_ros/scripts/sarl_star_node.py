@@ -111,6 +111,7 @@ class RobotAction(object):
         self.people_sub = rospy.Subscriber('/people', People, self.update_humans)
         self.goal_sub = rospy.Subscriber('/local_goal', PoseStamped, self.get_goal_on_map)
         self.global_costmap_sub = rospy.Subscriber('/move_base/global_costmap/costmap', OccupancyGrid, self.get_gc)
+        
         # ROS publishers
         self.cmd_vel_pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
         self.goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1)
@@ -290,9 +291,9 @@ class RobotAction(object):
 if __name__ == '__main__':
     begin_travel = False
     # set file dirs
-    model_dir = '/sarl_star_ros/CrowdNav/crowd_nav/data/output/'
-    env_config_file = '/sarl_star_ros/CrowdNav/crowd_nav/data/output/env.config'
-    policy_config_file = '/sarl_star_ros/CrowdNav/crowd_nav/data/output/policy.config'
+    model_dir = '~/sarl_ws/src/sarl_star/sarl_star_ros/CrowdNav/crowd_nav/data/output/'
+    env_config_file = '~/sarl_ws/src/sarl_star/sarl_star_ros/CrowdNav/crowd_nav/data/output/env.config'
+    policy_config_file = '~/sarl_ws/src/sarl_star/sarl_star_ros/CrowdNav/crowd_nav/data/output/policy.config'
     if os.path.exists(os.path.join(model_dir, 'resumed_rl_model.pth')):
         model_weights = os.path.join(model_dir, 'resumed_rl_model.pth')
     else:
