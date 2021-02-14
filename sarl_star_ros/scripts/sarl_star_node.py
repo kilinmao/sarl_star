@@ -332,8 +332,8 @@ if __name__ == '__main__':
 
     try:
         rospy.init_node('sarl_star_node', anonymous=True)
-#        rate = rospy.Rate(4)  # 4Hz, time_step=0.25
-        rate = rospy.Rate(20)  # 4Hz, time_step=0.25
+        rate = rospy.Rate(4)  # 4Hz, time_step=0.25
+        # rate = rospy.Rate(20)  # 4Hz, time_step=0.25
         robot_act = RobotAction()
         listener_v = tf.TransformListener()
         listener_g = tf.TransformListener()
