@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from logging import setLogRecordFactory
+#from logging import setLogRecordFactory
 import rospy
 from std_srvs.srv import Empty, EmptyResponse
 from nav_msgs.msg import Odometry
