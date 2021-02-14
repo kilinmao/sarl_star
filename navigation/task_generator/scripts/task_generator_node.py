@@ -46,9 +46,9 @@ class TaskGenerator:
         rospy.loginfo("goal reached and task reset!")
         rospy.loginfo("".join(["="]*80))
 
-#    def check_robot_pos_callback(self, odom_msg:Odometry):
-    def check_robot_pos_callback(self, Odometry):
-        robot_pos = nav_msgs.pose.pose.position
+    def check_robot_pos_callback(self, odom_msg: Odometry):
+#    def check_robot_pos_callback(self, Odometry):
+        robot_pos = odom_msg.pose.pose.position
         robot_x = robot_pos.x
         robot_y = robot_pos.y
         goal_x = self.curr_goal_pos_[0]
