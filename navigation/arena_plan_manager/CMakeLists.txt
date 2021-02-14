@@ -21,7 +21,7 @@ find_package(catkin REQUIRED COMPONENTS
 
   plan_visualization
   arena_plan_msgs
-  arena_fake_localization
+  fake_localization
 )
 
 ## System dependencies are found with CMake's conventions
