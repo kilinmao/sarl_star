@@ -61,12 +61,9 @@
  <!-- use simulator and rviz-->
   <include file="$(find sarl_star_ros)/launch/sublaunch/flatland_simulator.launch">
     <arg name="world_path"      value="$(arg world_path)"/>
-
     <arg name="update_rate"     default="10.0"/>
     <arg name="step_size"       default="0.05"/>
-
     <arg name="show_viz"        default="true"/>
-
     <arg name="viz_pub_rate"    default="10.0"/>
     <arg name="use_rviz"        default="$(arg use_viz)"/>  
     <arg name="train_mode"      default="false"/>
