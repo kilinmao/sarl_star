@@ -5,6 +5,8 @@
 
  <param name="/use_sim_time" value="true"/>
 
+  <arg name="local_planner"   default="sarl_star"/>
+
   <!-- laser driver -->
   <!-- <include file="$(find turtlebot_navigation)/laser/driver/$(arg laser_type)_laser.launch" /> -->
 
