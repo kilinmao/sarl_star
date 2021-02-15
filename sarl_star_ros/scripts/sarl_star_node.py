@@ -106,7 +106,7 @@ class RobotAction(object):
         self.start_py = None
 
         # ROS publishers
-        self.cmd_vel_pub = rospy.Publisher('/cmd_vel_mux/input/teleop', Twist, queue_size=1)
+        self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
         # self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
         self.goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1)
         self.action_marker_pub = rospy.Publisher('/action_marker', Marker, queue_size=1)
