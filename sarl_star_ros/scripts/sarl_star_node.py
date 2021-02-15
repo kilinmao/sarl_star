@@ -119,7 +119,7 @@ class RobotAction(object):
 
 
         self.people_sub = rospy.Subscriber('/people', People, self.update_humans)
-        self.goal_sub = rospy.Subscriber('/local_goal', PoseStamped, self.get_goal_on_map)
+        self.goal_sub = rospy.Subscriber('/sub_goal', PoseStamped, self.get_goal_on_map)
         self.global_costmap_sub = rospy.Subscriber('/move_base/global_costmap/costmap', OccupancyGrid, self.get_gc)
         
 
