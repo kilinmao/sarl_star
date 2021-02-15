@@ -13,7 +13,7 @@
     <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
 
               <!-- Publications -->
-        <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/>
+        <!-- <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/> -->
         <remap from="/goal_marker" to="goal_path_marker"/>
         <remap from="/action_marker" to="pose_marker"/>
         <remap from="/trajectory_marker" to="path_marker"/>
