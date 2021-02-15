@@ -12,6 +12,20 @@
       <!-- SARL_star Planner -->
     <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
 
+              <!-- Publications -->
+        <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/>
+        <remap from="/goal_marker" to="goal_path_marker"/>
+        <remap from="/action_marker" to="pose_marker"/>
+        <remap from="/trajectory_marker" to="path_marker"/>
+        <remap from="/vehicle_marker" to="/vehicle_marker"/>
+        
+        <!-- Subscriptions -->
+        <remap from="/odom" to="/odom"/>
+        <remap from="/people" to="/people"/>
+        <remap from="/local_goal" to="/local_goal"/>
+        <remap from="/move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
+      
+    </node>
 
 
 </launch>

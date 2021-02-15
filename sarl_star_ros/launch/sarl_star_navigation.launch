@@ -92,28 +92,23 @@
         <rosparam file="$(find conventional)/config/global_costmap_params.yaml" command="load" />
     </node>
 
-  <!-- SARL_star Planner -->
-  <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
 
-       
-          <!-- Publications -->
-        <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/>
-        <remap from="/goal_marker" to="goal_path_marker"/>
-        <remap from="/action_marker" to="pose_marker"/>
-        <remap from="/trajectory_marker" to="path_marker"/>
-        <remap from="/vehicle_marker" to="/vehicle_marker"/>
-        
-        <!-- Subscriptions -->
-        <remap from="/odom" to="/odom"/>
-        <remap from="/people" to="/people"/>
-        <remap from="/local_goal" to="/local_goal"/>
-        <remap from="/move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
+    <!-- start plan manager-->
+  <include file="$(find sarl_star_ros)/launch/sublaunch/plan_manager.launch">
+    <arg name="train_mode"        value="$(arg train_mode)"/>
+    <arg name="global_frame_id"   value="$(arg global_frame_id)"/>
+    <arg name="odom_frame_id"     value="$(arg odom_frame_id)"/>
+    <arg name="base_frame_id"     value="$(arg base_frame_id)"/>
+    <arg name="local_planner"     value="$(arg local_planner)"/>
+    <arg name="look_ahead_distance"     default="1.5"/>   <!-- meter, double-->
+    <arg name="tolerance_approach"      default="0.6"/>   <!-- meter, double-->
+    <arg name="timeout_goal"            default="330."/>  <!-- sec, double-->
+    <arg name="timeout_subgoal"         default="30."/>   <!-- sec, double-->
+  </include>      
         
 
   <!-- rviz -->
   <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find sarl_star_ros)/rviz/sarl_crowd_nav.rviz"/> -->
-
-
 
 
 </launch>
