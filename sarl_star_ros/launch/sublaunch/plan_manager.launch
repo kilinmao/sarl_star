@@ -18,7 +18,7 @@
 
     <!-- arena_plan_manager -->
     <node pkg="arena_plan_manager" name="plan_manager" type="plan_manager_node" output="screen">
-        <param name="train_mode"            default="false"/>
+        <param name="train_mode"            value="$(arg train_mode)"/>
         <param name="look_ahead_distance"   value="$(arg look_ahead_distance)"/>
         <param name="tolerance_approach"    value="$(arg tolerance_approach)"/>
         <param name="timeout_goal"          value="$(arg timeout_goal)"/>
