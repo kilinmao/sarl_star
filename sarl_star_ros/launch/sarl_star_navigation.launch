@@ -3,7 +3,7 @@
   <!-- Define laser type-->
   <!-- <arg name="laser_type" default="hokuyo" /> -->
 
- <param name="/use_sim_time" value="true"/>
+ <!-- <param name="/use_sim_time" value="true"/> -->
 
   <!-- laser driver -->
   <!-- <include file="$(find turtlebot_navigation)/laser/driver/$(arg laser_type)_laser.launch" /> -->
@@ -62,12 +62,12 @@
   <include file="$(find sarl_star_ros)/launch/sublaunch/flatland_simulator.launch">
     <arg name="world_path"      value="$(arg world_path)"/>
 
-    <arg name="update_rate"     default="50.0"/>
+    <arg name="update_rate"     default="10.0"/>
     <arg name="step_size"       default="0.05"/>
 
     <arg name="show_viz"        default="true"/>
 
-    <arg name="viz_pub_rate"    default="30.0"/>
+    <arg name="viz_pub_rate"    default="10.0"/>
     <arg name="use_rviz"        default="$(arg use_viz)"/>  
     <arg name="train_mode"      default="false"/>
     <!-- <arg name="rviz_file"       value="$(arg rviz_file)"/> -->
@@ -85,7 +85,7 @@
     <arg name="model" default="burger"/>
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
         <param name="controller_frequency" value="10.0"/> 
-        <param name="controller_patiente" value="15.0"/>
+        <param name="controller_patiente" value="10.0"/>
         <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />   
         <rosparam file="$(find conventional)/config/local_costmap_params.yaml" command="load" />
