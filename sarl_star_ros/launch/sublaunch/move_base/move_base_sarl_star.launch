@@ -24,8 +24,6 @@
         <remap from="/people" to="/people"/>
         <remap from="/local_goal" to="/local_goal"/>
         <remap from="/move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
-      
-    </node>
 
 
 </launch>
