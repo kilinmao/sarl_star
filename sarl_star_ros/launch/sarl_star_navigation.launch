@@ -93,7 +93,9 @@
     </node>
 
   <!-- SARL_star Planner -->
-  <!-- <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" /> -->
+  <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" />
+  </node>
+  
   <!-- <remap from="/cmd_vel_mux/input/teleop" to="/cmd_vel"/> -->
 
   <!-- rviz -->
