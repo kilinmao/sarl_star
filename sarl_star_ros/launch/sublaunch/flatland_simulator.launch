@@ -9,7 +9,7 @@
   <arg name="viz_pub_rate"/>
   <arg name="use_rviz"/>  
   <arg name="rviz_file" default="nav_LP"/>  
-  <arg name="train_mode"/>
+  <arg name="train_mode" default="false"/>
   <env name="ROSCONSOLE_FORMAT" value="[${severity} ${time} ${logger}]: ${message}" />
 
   <!-- launch flatland server -->
@@ -19,7 +19,7 @@
     <param name="step_size" value="$(arg step_size)" />
     <param name="show_viz" value="$(arg show_viz)" />
     <param name="viz_pub_rate" value="$(arg viz_pub_rate)" />
-    <param name="train_mode" default="false" />
+    <param name="train_mode" value="$(arg train_mode)" />
   </node>
 
   
