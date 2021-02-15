@@ -114,8 +114,10 @@ class RobotAction(object):
         self.vehicle_marker_pub = rospy.Publisher('/vehicle_marker', Marker, queue_size=1)
 
         # ROS subscribers
-        self.robot_pose_sub = rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, self.update_robot_pos)
+        # self.robot_pose_sub = rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, self.update_robot_pos)
         self.robot_odom_sub = rospy.Subscriber('/odom', Odometry, self.robot_vel_on_map_calculator)
+
+
         self.people_sub = rospy.Subscriber('/people', People, self.update_humans)
         self.goal_sub = rospy.Subscriber('/local_goal', PoseStamped, self.get_goal_on_map)
         self.global_costmap_sub = rospy.Subscriber('/move_base/global_costmap/costmap', OccupancyGrid, self.get_gc)
@@ -137,6 +139,7 @@ class RobotAction(object):
         self.visualize_trajectory(position, orientation)
 
     def robot_vel_on_map_calculator(self, msg):
+        self.update_robot_pos(msg)
         vel_linear = msg.twist.twist.linear
         listener_v.waitForTransform('/map', '/base_footprint', rospy.Time(0), rospy.Duration(10))
         trans, rot = listener_v.lookupTransform('/map', '/base_footprint', rospy.Time(0))
