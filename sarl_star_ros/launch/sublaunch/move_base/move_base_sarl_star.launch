@@ -23,6 +23,6 @@
         <remap from="~people" to="people"/>
         <remap from="~local_goal" to="/plan_manager/subgoal"/>
         <remap from="~~move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
-    </node>
+    <!-- </node> -->
 
 </launch>
