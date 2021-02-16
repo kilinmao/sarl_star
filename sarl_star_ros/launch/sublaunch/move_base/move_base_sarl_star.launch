@@ -21,7 +21,7 @@
         <!-- Subscriptions -->
         <remap from="~pose" to="/odom"/>
         <remap from="~people" to="people"/>
-        <remap from="~local_goal" to="/plan_manager/subgoal"/>
+        <remap from="~local_goal" to="/local_goal"/>
         <remap from="~move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
     <!-- </node> -->
 
