@@ -52,7 +52,7 @@
   <include file="$(find people_velocity_tracker)/launch/tracked_detector.launch" />
 
     <!-- start task_generator node -->
-  <include file="$(find arena_bringup)/launch/sublaunch/task_generator.launch" unless="$(arg train_mode)">
+  <include file="$(find sarl_star_ros)/launch/sublaunch/task_generator.launch" unless="$(arg train_mode)">
   </include>
 
     <!-- start plan manager-->
