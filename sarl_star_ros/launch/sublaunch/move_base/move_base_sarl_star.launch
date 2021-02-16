@@ -10,7 +10,7 @@
     </node>
 
       <!-- SARL_star Planner -->
-    <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" ns="/sarl_star"/>
+    <node pkg="sarl_star_ros" type="sarl_star_node.py" name="sarl_star_node" output="screen" ns="/sarl_star">
         <!-- Publications -->
         <remap from="~nn_cmd_vel" to="/cmd_vel"/>
         <remap from="~goal_marker" to="/goal_marker"/>
@@ -23,7 +23,7 @@
         <remap from="~people" to="people"/>
         <remap from="~local_goal" to="/local_goal"/>
         <remap from="~move_base/global_costmap/costmap" to="/move_base/global_costmap/costmap"/>
-        
+
     </node>
 
 </launch>
