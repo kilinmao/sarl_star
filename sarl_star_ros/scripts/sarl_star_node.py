@@ -107,7 +107,6 @@ class RobotAction(object):
 
         # ROS publishers
         self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
-        # self.cmd_vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size=1)
         self.goal_marker_pub = rospy.Publisher('/goal_marker', Marker, queue_size=1)
         self.action_marker_pub = rospy.Publisher('/action_marker', Marker, queue_size=1)
         self.trajectory_marker_pub = rospy.Publisher('/trajectory_marker', Marker, queue_size=1)
@@ -116,10 +115,8 @@ class RobotAction(object):
         # ROS subscribers
         # self.robot_pose_sub = rospy.Subscriber('/amcl_pose', PoseWithCovarianceStamped, self.update_robot_pos)
         self.robot_odom_sub = rospy.Subscriber('/odom', Odometry, self.robot_vel_on_map_calculator)
-
-
         self.people_sub = rospy.Subscriber('/people', People, self.update_humans)
-        self.goal_sub = rospy.Subscriber('/local_goal', PoseStamped, self.get_goal_on_map)
+        self.goal_sub = rospy.Subscriber('/sub_goal', PoseStamped, self.get_goal_on_map)
         self.global_costmap_sub = rospy.Subscriber('/move_base/global_costmap/costmap', OccupancyGrid, self.get_gc)
         
 
