@@ -26,7 +26,7 @@ class ABSTask(ABC):
 
     """
 
-    def __init__(self, obstacles_manager, robot_manager):
+    def __init__(self, obstacles_manager: ObstaclesManager, robot_manager: RobotManager):
         self.obstacles_manager = obstacles_manager
         self.robot_manager = robot_manager
         self._service_client_get_map = rospy.ServiceProxy("static_map", GetMap)
@@ -40,7 +40,7 @@ class ABSTask(ABC):
         a funciton to reset the task. Make sure that _map_lock is used.
         """
 
-    def _update_map(self, map_):
+    def _update_map(self, map_: OccupancyGrid):
         with self._map_lock:
             self.obstacles_manager.update_map(map_)
             self.robot_manager.update_map(map_)
@@ -50,7 +50,7 @@ class RandomTask(ABSTask):
     """ Evertime the start position and end position of the robot is reset.
     """
 
-    def __init__(self, obstacles_manager, robot_manager):
+    def __init__(self, obstacles_manager: ObstaclesManager, robot_manager: RobotManager):
         super().__init__(obstacles_manager, robot_manager)
 
     def reset(self):
@@ -82,7 +82,7 @@ class ManualTask(ABSTask):
     """randomly spawn obstacles and user can mannually set the goal postion of the robot
     """
 
-    def __init__(self, obstacles_manager, robot_manager):
+    def __init__(self, obstacles_manager: ObstaclesManager, robot_manager: RobotManager):
         super().__init__(obstacles_manager, robot_manager)
         # subscribe
         rospy.Subscriber("manual_goal", Pose2D, self._set_goal_callback)
@@ -111,7 +111,7 @@ class ManualTask(ABSTask):
                     except Exception as e:
                         rospy.logwarn(repr(e))
 
-    def _set_goal_callback(self, goal):
+    def _set_goal_callback(self, goal: Pose2D):
         with self._manual_goal_con:
             self._goal = goal
             self._new_goal_received = True
@@ -119,7 +119,7 @@ class ManualTask(ABSTask):
 
 
 class StagedRandomTask(RandomTask):
-    def __init__(self, obstacles_manager, robot_manager, start_stage = 1, PATHS=None):
+    def __init__(self, obstacles_manager: ObstaclesManager, robot_manager: RobotManager, start_stage: int = 1, PATHS=None):
         super().__init__(obstacles_manager, robot_manager)
         if not isinstance(start_stage, int):
             raise ValueError("Given start_stage not an Integer!")
@@ -185,7 +185,7 @@ class StagedRandomTask(RandomTask):
 
 
 class ScenerioTask(ABSTask):
-    def __init__(self, obstacles_manager, robot_manager, scenerios_json_path):
+    def __init__(self, obstacles_manager: ObstaclesManager, robot_manager: RobotManager, scenerios_json_path: str):
         """ The scenerio_json_path only has the "Scenerios" section, which contains a list of scenerios
         Args:
             scenerios_json_path (str): [description]
@@ -280,7 +280,7 @@ class ScenerioTask(ABSTask):
             raise StopReset("All scenerios have been evaluated!") from e
 
     @staticmethod
-    def generate_scenerios_json_example(dst_json_path):
+    def generate_scenerios_json_example(dst_json_path: str):
         dst_json_path_ = Path(dst_json_path)
         dst_json_path_.parent.mkdir(parents=True, exist_ok=True)
         json_data = {}
@@ -331,7 +331,7 @@ class ScenerioTask(ABSTask):
         json.dump(json_data, dst_json_path_.open('w'), indent=4)
 
 
-def get_predefined_task(mode="random", start_stage = 1, PATHS = None):
+def get_predefined_task(mode="random", start_stage: int = 1, PATHS: dict = None):
 
     # TODO extend get_predefined_task(mode="string") such that user can choose between task, if mode is
 

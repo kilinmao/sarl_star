@@ -309,6 +309,17 @@ Visualization Manager:
           Unreliable: false
           Use Timestamp: false
           Value: true
+        - Circles color: 170; 0; 0
+          Class: Obstacles
+          Enabled: true
+          Margin color: 0; 170; 0
+          Name: Obstacles
+          Opacity: 0.75
+          Segments color: 170; 170; 0
+          Segments thickness: 0.029999999329447746
+          Topic: /obstacles
+          Unreliable: false
+          Value: true
       Enabled: true
       Name: Sensors
   Enabled: true
@@ -331,6 +342,8 @@ Visualization Manager:
     - Class: rviz/SetGoal
       Topic: /move_base_simple/goal
     - Class: flatland_viz/SpawnModel
+    - Class: rviz_plugins/Goal3DTool
+      Topic: goal
   Value: true
   Views:
     Current:

@@ -1,20 +1,8 @@
 <launch>
-<!--  -->
-  <!-- Define laser type-->
-  <!-- <arg name="laser_type" default="hokuyo" /> -->
 
- <param name="/use_sim_time" value="true"/>
-
-  <arg name="local_planner"   default="sarl_star"/>
-
-  <!-- laser driver -->
-  <!-- <include file="$(find turtlebot_navigation)/laser/driver/$(arg laser_type)_laser.launch" /> -->
-
-  <!-- laser filter (optional) -->
-  <!-- <node pkg="laser_filters" type="scan_to_scan_filter_chain"
-      name="laser_filter">
-    <rosparam command="load" file="$(find laser_filters)/laserscan_filter.yaml" />
-  </node> -->
+ <param name="use_sim_time" value="true"/>
+ <arg name="local_planner"   default="sarl_star"/>
+ <arg name="rviz_file"       default="nav"/>
 
    <!-- Map parameters -->
   <arg name="map_file"        default="map1"/>
@@ -27,38 +15,13 @@
   
   <arg name="odom_ground_truth" default="/odometry/ground_truth"/>
 
-  <!-- Map server -->
-  <!-- <arg name="map_file" default="sarl_star_ros/map/wangtong.yaml"/>
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" /> -->
-  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_path)">
-   <param name="frame_id" value="$(arg global_frame_id)"/>
-  </node>
-
-  <!-- AMCL -->
-  <!-- <arg name="custom_amcl_launch_file" default="$(find turtlebot_navigation)/launch/includes/amcl/$(arg laser_type)_amcl.launch.xml"/> -->
-
-  <!-- <arg name="initial_pose_x" default="-0.5"/>
-  <arg name="initial_pose_y" default="9.6"/>
-  <arg name="initial_pose_a" default="-1.35"/>
-
-  <include file="$(arg custom_amcl_launch_file)">
-    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
-    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
-    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
-  </include> -->
-
-
-    <!-- use fake localization-->
-  <include file="$(find sarl_star_ros)/launch/sublaunch/fake_localization.launch">
-    <arg name="global_frame_id"   value="$(arg global_frame_id)"/>
-    <arg name="odom_frame_id"     value="$(arg odom_frame_id)"/>
-    <arg name="base_frame_id"     value="$(arg base_frame_id)"/>
-    <arg name="odom_ground_truth" default="$(arg odom_ground_truth)"/>
-  </include>
-
-  <!-- Visualization -->
+    <!-- Visualization -->
   <arg name="use_viz"         default="true"/>
   <param name="use_viz"       value="$(arg use_viz)"/>
+
+    <!-- Obstacle parameters -->
+  <arg name="obs_vel"       default="0.3"/>
+  <param name="obs_vel"     value="$(arg obs_vel)"/>
 
  <!-- use simulator and rviz-->
   <include file="$(find sarl_star_ros)/launch/sublaunch/flatland_simulator.launch">
@@ -72,25 +35,25 @@
     <!-- <arg name="rviz_file"       value="$(arg rviz_file)"/> -->
   </include>
 
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_path)">
+   <param name="frame_id" value="$(arg global_frame_id)"/>
+  </node>
+
+    <!-- use fake localization-->
+  <include file="$(find sarl_star_ros)/launch/sublaunch/fake_localization.launch">
+    <arg name="global_frame_id"   value="$(arg global_frame_id)"/>
+    <arg name="odom_frame_id"     value="$(arg odom_frame_id)"/>
+    <arg name="base_frame_id"     value="$(arg base_frame_id)"/>
+    <arg name="odom_ground_truth" default="$(arg odom_ground_truth)"/>
+  </include>
+
   <!-- People Detector -->
   <include file="$(find people_velocity_tracker)/launch/tracked_detector.launch" />
 
-  <!-- Move base -->
-  <!-- <arg name="custom_param_file" default="$(find turtlebot_navigation)/param/$(arg laser_type)_costmap_params.yaml"/>
-  <include file="$(find turtlebot_navigation)/launch/includes/$(arg laser_type)_move_base.launch.xml">
-    <arg name="custom_param_file" value="$(arg custom_param_file)"/>
-  </include> -->
-
-    <!-- <arg name="model" default="burger"/>
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-        <param name="controller_frequency" value="10.0"/> 
-        <param name="controller_patiente" value="10.0"/>
-        <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="global_costmap" />
-        <rosparam file="$(find conventional)/config/costmap_common_params_$(arg model).yaml" command="load" ns="local_costmap" />   
-        <rosparam file="$(find conventional)/config/local_costmap_params.yaml" command="load" />
-        <rosparam file="$(find conventional)/config/global_costmap_params.yaml" command="load" />
-    </node> -->
-
+    <!-- start task_generator node -->
+  <include file="$(find arena_bringup)/launch/sublaunch/task_generator.launch" unless="$(arg train_mode)">
+  </include>
 
     <!-- start plan manager-->
   <include file="$(find sarl_star_ros)/launch/sublaunch/plan_manager.launch">
@@ -105,10 +68,5 @@
     <arg name="timeout_subgoal"         default="30."/>   <!-- sec, double-->
   </include>      
         
-
-  <!-- rviz -->
-  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find sarl_star_ros)/rviz/sarl_crowd_nav.rviz"/> -->
-
-
 </launch>
 

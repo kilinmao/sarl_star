@@ -84,7 +84,6 @@ class NN_tb3():
         # subscribers and publishers
         self.num_poses = 0
         self.num_actions_computed = 0.0
-        
         self.pub_others = rospy.Publisher('~other_vels',Vector3,queue_size=1)
         self.pub_twist = rospy.Publisher('~nn_cmd_vel',Twist,queue_size=1) 
         self.pub_pose_marker = rospy.Publisher('~pose_marker',Marker,queue_size=1)
@@ -92,7 +91,6 @@ class NN_tb3():
         self.pub_agent_markers = rospy.Publisher('~agent_markers',MarkerArray,queue_size=1)
         self.pub_path_marker = rospy.Publisher('~path_marker',Marker,queue_size=1)
         self.pub_goal_path_marker = rospy.Publisher('~goal_path_marker',Marker,queue_size=1)
-        
         # sub
         self.sub_pose = rospy.Subscriber('~pose',Odometry,self.cbPose)
         self.sub_mode = rospy.Subscriber('~mode',PlannerMode, self.cbPlannerMode)

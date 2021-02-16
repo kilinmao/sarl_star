@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-#from logging import setLogRecordFactory
+from logging import setLogRecordFactory
 import rospy
 from std_srvs.srv import Empty, EmptyResponse
 from nav_msgs.msg import Odometry
@@ -46,8 +46,7 @@ class TaskGenerator:
         rospy.loginfo("goal reached and task reset!")
         rospy.loginfo("".join(["="]*80))
 
-#    def check_robot_pos_callback(self, odom_msg: Odometry):
-    def check_robot_pos_callback(self, odom_msg):
+    def check_robot_pos_callback(self, odom_msg: Odometry):
         robot_pos = odom_msg.pose.pose.position
         robot_x = robot_pos.x
         robot_y = robot_pos.y
